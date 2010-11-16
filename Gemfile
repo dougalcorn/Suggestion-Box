@@ -6,6 +6,7 @@ gem 'formtastic', :git => "git://github.com/justinfrench/formtastic.git", :branc
 gem "escape_utils"
 
 gem "devise"
+gem "omniauth"
 gem "nifty-generators"
 
 group :test do
