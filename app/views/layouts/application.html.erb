@@ -8,8 +8,8 @@
   <%= formtastic_stylesheet_link_tag %>
 </head>
 <body>
-
-<%= yield %>
-
+  <%= render :partial => "shared/navigation" %>
+  <%= render :partial => "shared/notices" %>
+  <%= yield %>
 </body>
 </html>

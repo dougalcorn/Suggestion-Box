@@ -5,10 +5,13 @@ gem "sqlite3-ruby", :require => "sqlite3"
 gem 'formtastic', :git => "git://github.com/justinfrench/formtastic.git", :branch => "rails3"
 gem "escape_utils"
 
-group :test do
-      gem "factory_girl_rails"
-      gem "shoulda"
-      gem "flexmock"
-      gem "capybara"
+gem "devise"
+gem "nifty-generators"
 
+group :test do
+  gem "factory_girl_rails"
+  gem "shoulda"
+  gem "flexmock"
+  gem "capybara"
+  gem "mocha"
 end
