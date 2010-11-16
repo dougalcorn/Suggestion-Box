@@ -4,7 +4,7 @@ SuggestionBox::Application.routes.draw do
 
   resources :authentications
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'registrations' }
 
   root :to => 'topics#index'
   resources :topics
