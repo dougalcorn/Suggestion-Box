@@ -4,10 +4,16 @@ class AuthenticationsController < ApplicationController
   end
   
   def create
-    auth = request.env["rack.auth"]
-    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
-    flash[:notice] = "Authentication successful."  
-    redirect_to authentications_url
+    omniauth = request.env["omniauth.auth"]  
+    authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])  
+    if authentication
+      flash[:notice] = "Signed in successfully."  
+      sign_in_and_redirect(:user, authentication.user) # defined in devise
+    else
+      current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])  
+      flash[:notice] = "Authentication successful."  
+      redirect_to authentications_url  
+    end 
   end
   
   def destroy
