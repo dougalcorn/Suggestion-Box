@@ -4,7 +4,10 @@ class AuthenticationsController < ApplicationController
   end
   
   def create
-    render :text => "<pre>#{request.env["rack.auth"].to_yaml}</pre>"
+    auth = request.env["rack.auth"]
+    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
+    flash[:notice] = "Authentication successful."  
+    redirect_to authentications_url
   end
   
   def destroy
